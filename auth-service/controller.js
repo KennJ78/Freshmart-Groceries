@@ -17,15 +17,16 @@ const signup = async(req, res) =>{
         const token = generateToken(user)
         res.status(200).json({success: true, message: {username, token, _id: user}})
     }catch(error){
+        console.log('Error:', error.message);  // Add this line
         res.status(400).json({success: false, message: error.message})
     }
 }
 
 const login = async(req, res) =>{
-    const {email, password} = req.body
+    const {username, password} = req.body
 
     try{
-        const user = await User.login(email, password)
+        const user = await User.login(username, password)
         //generate token
         const token = generateToken(user.id)
         res.status(200).json({success: true, message: {username:user.username, token, _id: user.id}})

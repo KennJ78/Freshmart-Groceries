@@ -39,7 +39,7 @@ userSchema.statics.signup = async function(username, password, userLevel){
     }
     const salt = bcrypt.genSaltSync(15)
     const hashedPassword = bcrypt.hashSync(password, salt)
-    const user = await this.create({email, password:hashedPassword, name})
+    const user = await this.create({username, password:hashedPassword, userLevel})
 
     return user._id
 }
