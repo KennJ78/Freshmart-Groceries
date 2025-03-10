@@ -1,12 +1,14 @@
-const express = require('express');
-const router = express.Router();
-const employeeController = require('../controllers/employee-conroller');
+const express = require('express')
+const router = express.Router()
 
-// Employee API Endpoints
-router.post('/new', employeeController.createEmployee);
-router.get('/', employeeController.getAllEmployees);
-router.get('/:id', employeeController.getEmployeeById);
-router.put('/:id', employeeController.updateEmployee);
-router.delete('/:id', employeeController.deleteEmployee);
+//const requireAuth = require('../middleware/requireAuth')
+const {
+    getEmployees, createEmployee
+} = require('../controllers/employee-conroller')
 
-module.exports = router;
+//router.use(requireAuth)
+
+router.post('/new', createEmployee)
+router.get('/all', getEmployees)
+
+module.exports = router
